@@ -1,0 +1,8 @@
+id,description
+SLR-001,The system shall continuously monitor vehicle speed during all operating modes
+SLR-002,The system shall apply emergency braking automatically when a forward collision is imminent
+SLR-003,The system shall issue a lane departure warning when the vehicle unintentionally crosses lane markings
+SLR-004,The system shall detect and track pedestrians and cyclists within the vehicle operating zone
+SLR-005,The system shall operate correctly across an ambient temperature range of -40°C to 85°C
+SLR-006,The system shall provide real-time sensor data to the central processing unit with latency below 20ms
+SLR-007,The system shall alert the driver through audible and visual notifications for all critical safety events

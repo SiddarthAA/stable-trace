@@ -1,0 +1,36 @@
+[project]
+name = "tracex"
+version = "0.1.0"
+description = "End-to-end requirements traceability: BM25 + Dense Embeddings + Cross-Encoder"
+readme = "README.md"
+requires-python = ">=3.11"
+dependencies = [
+    # BM25 lexical retrieval
+    "rank-bm25>=0.2.2",
+    # Dense embeddings (bge-large) + cross-encoder
+    "sentence-transformers>=3.4.0",
+    # Vector store / HNSW index
+    "faiss-cpu>=1.9.0",
+    # Numerics & data
+    "numpy>=1.26.0",
+    "pandas>=2.1.0",
+    "scikit-learn>=1.4.0",
+    # Tokenisation for BM25
+    "nltk>=3.8.1",
+    # Progress bars (used inside sentence-transformers too)
+    "tqdm>=4.66.0",
+    # CLI
+    "click>=8.1.7",
+    # Rich terminal output
+    "rich>=13.7.0",
+]
+
+[project.scripts]
+tracex = "main:main"
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[tool.hatch.build.targets.wheel]
+packages = ["tracex"]

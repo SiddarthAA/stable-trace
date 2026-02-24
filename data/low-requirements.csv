@@ -1,0 +1,19 @@
+id,description
+LLR-001,The wheel speed encoder shall output 64 pulses per wheel revolution to the speed sensing module
+LLR-002,The ABS control module shall sample hydraulic brake pressure at a rate of 1kHz
+LLR-003,The camera image processor shall apply Canny edge detection to identify lane marking boundaries
+LLR-004,The neural network inference engine shall execute the pedestrian detection model at a minimum of 30 FPS on the onboard GPU
+LLR-005,The ambient temperature sensor shall measure temperature with a resolution of 0.1°C and report via I2C
+LLR-006,The radar signal processor shall apply a 512-point FFT to each received chirp for range-Doppler processing
+LLR-007,The buzzer driver shall output an 85dB alert tone at 2kHz frequency upon receiving a warning trigger
+LLR-008,The CAN bus transceiver shall operate at 500 kbps and conform to ISO 11898-2
+LLR-009,The lane departure classifier shall use a convolutional neural network with a ResNet-50 backbone
+LLR-010,The hydraulic brake actuator solenoid shall be controlled by a 2kHz PWM signal with variable duty cycle
+LLR-011,The LIDAR point cloud processor shall remove outlier points using a statistical outlier removal filter with k=30
+LLR-012,The HMI display driver shall support 1280×720 resolution at 60Hz refresh rate for alert message rendering
+LLR-013,The cyclist bounding box detector shall use a two-stage detection pipeline with region proposal and classification
+LLR-014,The cooling fan controller shall adjust fan speed continuously based on a PID control loop fed by temperature sensor data
+LLR-015,The velocity calculator shall integrate wheel encoder pulse counts using trapezoidal integration with a 1ms sample period
+LLR-016,The ECU microcontroller shall execute the main control loop at 100Hz using a real-time operating system task scheduler
+LLR-017,The forward collision warning algorithm shall compute time-to-collision from radar range and relative velocity measurements
+LLR-018,The visual alert LED array shall flash at 4Hz with 50% duty cycle when a lane departure warning is active

@@ -1,0 +1,13 @@
+id,description
+HLR-001,The speed sensing subsystem shall measure vehicle velocity with an accuracy of ±0.5 km/h
+HLR-002,The brake control unit shall apply brake force within 150ms of receiving an emergency braking signal
+HLR-003,The camera subsystem shall process road lane markings at a frame rate of at least 30 fps
+HLR-004,The object detection module shall identify pedestrians with a minimum detection rate of 95%
+HLR-005,The thermal management subsystem shall maintain all electronic components within their rated operating temperature
+HLR-006,The radar sensor shall detect stationary and moving objects up to 200m ahead of the vehicle
+HLR-007,The driver alert module shall generate audible and visual warnings within 500ms of a safety event trigger
+HLR-008,The electronic control unit shall process all sensor inputs and produce control outputs within 10ms
+HLR-009,The cyclist detection algorithm shall recognise cyclists with at least 90% accuracy at a range of 50m
+HLR-010,The hydraulic brake actuator shall achieve a maximum deceleration of 0.8g under full emergency braking
+HLR-011,The CAN bus communication subsystem shall transmit sensor data frames with end-to-end latency below 5ms
+HLR-012,The display subsystem shall render driver alert messages on the HMI within 200ms of event detection
