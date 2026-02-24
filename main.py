@@ -31,7 +31,7 @@ import click
 from rich.console import Console
 from rich.panel import Panel
 
-from tracex.config import Config
+from tracex.config import Config, resolve_device
 from tracex.engine import TraceabilityEngine
 from tracex.loader import load_requirements
 
@@ -92,9 +92,9 @@ console = Console()
 # ── Hardware ──────────────────────────────────────────────────────────────
 @click.option(
     "--device",
-    default="cpu",
-    type=click.Choice(["cpu", "cuda"], case_sensitive=False),
-    help="Inference device",
+    default="auto",
+    type=click.Choice(["cpu", "cuda", "auto"], case_sensitive=False),
+    help="Inference device: auto=use CUDA if available, otherwise CPU",
 )
 @click.option("--batch-size", default=32, help="Embedding batch size")
 def main(
@@ -112,12 +112,20 @@ def main(
             "(-s and -h) or (-h and -l) or all three."
         )
 
+    # Resolve "auto" → "cpu" or "cuda" before anything else, so we can
+    # show the actual device in the banner and catch bad configs early.
+    try:
+        resolved_device = resolve_device(device)
+    except ValueError as exc:
+        raise click.UsageError(str(exc)) from exc
+
     console.print(
         Panel.fit(
             "[bold green]TraceX — Requirements Traceability[/bold green]\n"
             f"Dense model   : [yellow]{dense_model}[/yellow]\n"
             f"Cross-encoder : [yellow]{cross_encoder}[/yellow]\n"
-            f"Device        : [yellow]{device}[/yellow]",
+            f"Device        : [yellow]{resolved_device}[/yellow]"
+            + (" [dim](auto-selected)[/dim]" if device == "auto" else ""),
             border_style="green",
         )
     )
@@ -137,7 +145,7 @@ def main(
         gamma=gamma,
         final_threshold=final_threshold,
         top_n=top_n,
-        device=device,
+        device=resolved_device,
         batch_size=batch_size,
     )
 

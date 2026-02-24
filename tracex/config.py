@@ -1,4 +1,40 @@
-from dataclasses import dataclass
+from dataclasses import dataclass, field
+
+
+def resolve_device(requested: str) -> str:
+    """
+    Resolve the requested device string to a concrete "cpu" or "cuda" value.
+
+    Accepted values:
+      "cpu"   — always use CPU
+      "cuda"  — use GPU; raises a clear error if CUDA is not available
+      "auto"  — use CUDA if available, otherwise fall back to CPU silently
+    """
+    requested = requested.lower().strip()
+
+    if requested == "cpu":
+        return "cpu"
+
+    try:
+        import torch
+        cuda_available = torch.cuda.is_available()
+    except ImportError:
+        cuda_available = False
+
+    if requested == "auto":
+        return "cuda" if cuda_available else "cpu"
+
+    if requested == "cuda":
+        if not cuda_available:
+            raise ValueError(
+                "Device 'cuda' was requested but CUDA is not available on this machine. "
+                "Use --device cpu or --device auto to run on CPU."
+            )
+        return "cuda"
+
+    raise ValueError(
+        f"Unknown device '{requested}'. Valid options: cpu, cuda, auto."
+    )
 
 
 @dataclass
@@ -28,6 +64,6 @@ class Config:
     final_threshold: float = 0.4   # minimum fused score to include a link
     top_n: int = 10                # max links returned per source requirement
 
-    # Hardware
-    device: str = "cpu"  # "cuda" for GPU
+    # Hardware — resolved to "cpu" or "cuda" by resolve_device()
+    device: str = "cpu"
     batch_size: int = 32
